@@ -11,34 +11,56 @@ const questions = ["What is your project's title?", "Enter the project's descrip
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    //const sections = ["Title","Description","Installation","Usage","Contribute","Tests"];
-    // README Title
-    let section;
     // Write Title to fileName
-    fs.writeFile(fileName, `\# ${data.Title} \n\n`, (err) =>
-    err ? console.error(err) : console.log('Success!')
+    fs.writeFile(fileName, `\# ${data.Title}\n\n`, (err) =>
+        err ? console.error(err) : console.log('Success!')
     );
-    //for (let i=1; i < questions.length; i++){
-        // Append sections to fileName
-        fs.appendFile(fileName, `\#\# Description\n\n ${data.Description}\n\n`, (err) =>
+
+    // Add license badge
+    let lic;
+    switch (data.License) {
+        case "Apache License 2.0":
+            lic = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)\n\n`;
+            break;
+        case "GNU v3.0":
+            lic = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)\n\n`;
+            break;
+        case "MIT License":
+            lic = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)\n\n`;
+            break;
+        case "Eclipse Public License 2.0":
+            lic = `[![License](https://img.shields.io/badge/License-EPL_2.0-red.svg)](https://opensource.org/licenses/EPL-2.0)\n\n`
+            break;
+    }
+    fs.appendFile(fileName, lic, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `\#\# Table of Contents\n\n`, (err) =>
+
+    // Append remaining sections to fileName
+
+    fs.appendFile(fileName, `\#\# Description\n\n${data.Description}\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `\#\# Installation\n\n ${data.Installation}\n\n`, (err) =>
+    
+    // Create Table of Contents
+    fs.appendFile(fileName, `\#\# Table of Contents\n\n` +
+        `- [Description](#description)\n- [Installation](#installation)\n- [Usage](#usage)\n`
+        + `- [License](#license)\n- [Contribute](#contribute)\n- [Tests](#tests)\n- [Questions](#questions)\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `\#\# Usage\n\n ${data.Usage}\n\n`, (err) =>
+
+        fs.appendFile(fileName, `\#\# Installation\n\n${data.Installation}\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `\#\# License\n\n ${data.License}\n\n`, (err) =>
+    fs.appendFile(fileName, `\#\# Usage\n\n${data.Usage}\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `\#\# Contribute\n\n ${data.Contribute}\n\n`, (err) =>
+    fs.appendFile(fileName, `\#\# License\n\n${data.License}\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `\#\# Tests\n\n ${data.Tests}\n\n`, (err) =>
+    fs.appendFile(fileName, `\#\# Contribute\n\n${data.Contribute}\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `\#\# Questions\n\nhttps://github.com/${data.username}\n\n`, (err) =>
+    fs.appendFile(fileName, `\#\# Tests\n\n${data.Tests}\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `[${data.email}](mailto:${data.email})\n`, (err) =>
+    fs.appendFile(fileName, `\#\# Questions\n\n` +
+        `For bugs or RFEs, use the GitHub repo: ` +
+        `https://github.com/${data.username}\n\n` +
+        `Email your questions to: [${data.email}](mailto:${data.email})\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-    //}
 }
 
 // TODO: Create a function to initialize app
@@ -67,27 +89,28 @@ function init() {
             },
             {
                 type: 'list',
-                message: questions[3],
+                message: questions[4],
+                choices: ["Apache License 2.0", "GNU v3.0", "MIT License", "Eclipse Public License 2.0"],
                 name: 'License'
             },
             {
                 type: 'input',
-                message: questions[4],
+                message: questions[5],
                 name: 'Contribute'
             },
             {
                 type: 'input',
-                message: questions[5],
+                message: questions[6],
                 name: 'Tests'
             },
             {
                 type: 'input',
-                message: questions[6],
+                message: questions[7],
                 name: 'username'
             },
             {
                 type: 'input',
-                message: questions[7],
+                message: questions[8],
                 name: 'email'
             },
         ])

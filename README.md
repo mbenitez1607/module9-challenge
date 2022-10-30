@@ -1,5 +1,7 @@
 # Module 9: Node.js Challenge - Professional README Generator 
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Description
 
  This project is a command-line application to easily generate a high quality README file for any app. 
@@ -31,7 +33,7 @@ By default the program creates a file named: `README.md`. If the optional `filen
 
 ## License
 
-MIT
+MIT License
 
 ## Contribute
 
@@ -43,6 +45,6 @@ N/A
 
 ## Questions
 
-https://github.com/mbenitez1607
+For bugs or RFEs, use the GitHub repo: https://github.com/mbenitez1607
 
-[mbenitez.a@gmail.com](mailto:mbenitez.a@gmail.com)
+Email your questions to: [mbenitez.a@gmail.com](mailto:mbenitez.a@gmail.com)
