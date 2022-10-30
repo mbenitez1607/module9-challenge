@@ -36,7 +36,7 @@ function writeToFile(fileName, data) {
         err ? console.error(err) : console.log('Success!'));
         fs.appendFile(fileName, `\#\# Questions\n\nhttps://github.com/${data.username}\n\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
-        fs.appendFile(fileName, `[${data.email}](${data.email})\n`, (err) =>
+        fs.appendFile(fileName, `[${data.email}](mailto:${data.email})\n`, (err) =>
         err ? console.error(err) : console.log('Success!'));
     //}
 }
@@ -66,7 +66,7 @@ function init() {
                 name: 'Usage'
             },
             {
-                type: 'input',
+                type: 'list',
                 message: questions[3],
                 name: 'License'
             },
